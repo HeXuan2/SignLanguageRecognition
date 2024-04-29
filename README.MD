@@ -1,3 +1,5 @@
+# 借鉴参考的 https://github.com/harveyfly/SignLanguageRecognition
+
 # 项目介绍
 + 该项目的目标是：**基于PyTorch实现中文孤立手语词识别**；
 + 目前使用的基本网络结构是：**Bi-LSTM**（双向长短期记忆神经网络）；
