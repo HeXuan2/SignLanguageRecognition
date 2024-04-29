@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>camera</title>
+    <style>
+        .con{
+           float:left;
+           height:600px;width:600px;
+           margin-right:10px;
+        }
+    </style>
+</head>
+<body>
+<h3>接受传输来的视频</h3>
+
+<div class="con">
+
+<!--    <img src="{{url_for('video_feed0')}}" alt="" width="100%">-->
+    <img src="http://127.0.0.1:60500/video_feed0" alt="" width="100%">
+</div>
+<div class="con">
+    <img src="{{url_for('video_feed1')}}" alt="" width="100%">
+</div>
+
+<button onclick="stopApp()">Stop App</button>
+<div id="status"></div>
+
+<script>
+
+function stopApp() {
+    var statusElement = document.getElementById("status");
+    statusElement.textContent = "Stopping app...";
+
+    fetch('http://127.0.0.1:60504/stop_app')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                statusElement.textContent = "App stopped";
+            } else {
+                statusElement.textContent = "Failed to stop app";
+            }
+        })
+        .catch(error => {
+            statusElement.textContent = "Error stopping app: " + error;
+        });
+}
+
+</script>
+
+
+
+</body>
+</html>
